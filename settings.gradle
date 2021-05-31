@@ -1,0 +1,2 @@
+rootProject.name = 'study3'
+include('moonkyung-api')
