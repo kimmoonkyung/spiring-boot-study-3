@@ -26,7 +26,26 @@ class RestaurantControllerTest {
         try {
             mvc.perform(get("/restaurants"))
                     .andExpect(status().isOk())
-                    .andExpect(content().string(containsString("커염둥이승내")));
+                    .andExpect(content().string(containsString("\"id\":109")))
+                    .andExpect(content().string(containsString("\"name\":\"충내")))
+                    .andExpect(content().string(containsString("\"address\":\"서초구")))
+                    .andExpect(content().string(containsString("\"information\":\"커염둥이임")));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void detail() {
+        try {
+            mvc.perform(get("/restaurants/109"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().string(containsString("\"id\":109")))
+                    .andExpect(content().string(containsString("\"name\":\"충내")));
+            mvc.perform(get("/restaurants/101"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().string(containsString("\"id\":101")))
+                    .andExpect(content().string(containsString("\"name\":\"승균")));
         } catch (Exception e) {
             e.printStackTrace();
         }
